@@ -26,6 +26,13 @@ from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OneHotEncoder
 from sklearn.linear_model import LogisticRegression
 from sklearn.ensemble import RandomForestClassifier
+# XGBoost opsiyonel: kurulu değilse (örn. yavaş bağlantıda indirilemediyse) proje
+# yine de LogReg + Random Forest ile çalışır. Deploy/CI ortamında otomatik kurulur.
+try:
+    from xgboost import XGBClassifier
+    HAS_XGBOOST = True
+except ImportError:
+    HAS_XGBOOST = False
 from sklearn.metrics import (
     accuracy_score, precision_score, recall_score, f1_score,
     roc_auc_score, confusion_matrix, classification_report
@@ -131,13 +138,26 @@ preprocessor = ColumnTransformer(
     ]
 )
 
-# İki model deniyoruz ve karşılaştırıyoruz.
+# Üç model deniyoruz ve karşılaştırıyoruz.
+# Dengesiz veri için: LogReg/RF'de class_weight="balanced", XGBoost'ta ise
+# scale_pos_weight = (negatif sayısı / pozitif sayısı) ile azınlık sınıfa ağırlık veririz.
+scale_pos_weight = (y_train == 0).sum() / (y_train == 1).sum()
+
 models = {
     "Logistic Regression": LogisticRegression(max_iter=1000, class_weight="balanced"),
     "Random Forest": RandomForestClassifier(
         n_estimators=200, random_state=42, class_weight="balanced"
     ),
 }
+# XGBoost kuruluysa 3. model olarak ekle
+if HAS_XGBOOST:
+    models["XGBoost"] = XGBClassifier(
+        n_estimators=300, max_depth=4, learning_rate=0.1,
+        scale_pos_weight=scale_pos_weight, eval_metric="logloss",
+        random_state=42,
+    )
+else:
+    print("   ! XGBoost kurulu değil; LogReg + Random Forest ile devam ediliyor.\n")
 
 best_model = None
 best_auc = 0

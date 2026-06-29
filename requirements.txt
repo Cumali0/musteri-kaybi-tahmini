@@ -6,3 +6,4 @@ seaborn>=0.13.2
 streamlit>=1.40
 joblib>=1.4.2
 shap>=0.46
+xgboost>=2.1

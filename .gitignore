@@ -4,6 +4,10 @@ __pycache__/
 venv/
 .venv/
 
+# Test & notebook geçici dosyaları
+.pytest_cache/
+.ipynb_checkpoints/
+
 # Ham veri seti: Kaggle'dan indirilir, repoya koymaya gerek yok (büyük + lisans).
 # Uygulama (app.py) bu dosyaya ihtiyaç duymaz; sadece train_model.py kullanır.
 *.csv
