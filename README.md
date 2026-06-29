@@ -7,9 +7,9 @@ Telekom müşterilerinin **ayrılma (churn)** olasılığını makine öğrenmes
 ![Streamlit](https://img.shields.io/badge/Streamlit-UI-red)
 ![CI](https://github.com/Cumali0/musteri-kaybi-tahmini/actions/workflows/ci.yml/badge.svg)
 
-### 🔴 [Canlı Demo →](https://BURAYA-STREAMLIT-LINKINI-YAPISTIR.streamlit.app)
+### 🔴 [Canlı Demo →](https://musteri-kaybi-tahmini-trsfj6r8l5vaok4dpeldat.streamlit.app)
 
-> ℹ️ Streamlit Cloud'a yükledikten sonra yukarıdaki linki gerçek `*.streamlit.app` adresinle değiştir. CI rozetindeki `Cumali0/musteri-kaybi-tahmini` kısmını da kendi repo adresinle güncelle.
+> Uygulamayı kurmadan, doğrudan tarayıcından deneyebilirsin.
 
 ---
 
