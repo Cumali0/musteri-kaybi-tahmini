@@ -1,0 +1,16 @@
+# Python
+__pycache__/
+*.pyc
+venv/
+.venv/
+
+# Ham veri seti: Kaggle'dan indirilir, repoya koymaya gerek yok (büyük + lisans).
+# Uygulama (app.py) bu dosyaya ihtiyaç duymaz; sadece train_model.py kullanır.
+*.csv
+
+# IDE
+.vscode/
+.idea/
+
+# NOT: *.joblib (model dosyaları) ve grafikler/ klasörü BİLEREK hariç tutulmadı.
+# Streamlit Cloud'daki canlı demonun çalışması için bunların repoda olması gerekir.
